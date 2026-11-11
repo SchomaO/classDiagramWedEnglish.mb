@@ -156,25 +156,26 @@ classDiagram
         +taoThongBao() Void
     }
 
-    NguoiDung <|-- HocVien
+    %% Kế thừa (Inheritance)
+    NguoiDung <|-- HocVien 
     NguoiDung <|-- QuanTriVien
 
-    KhoaHoc "1" *-- "1..*" KyNang
-    KyNang "1" *-- "1..*" BaiHoc
-    BaiHoc "1" o-- "0..*" CauHoi
-    BaiKiemTraDauVao "1" o-- "10..*" CauHoi
+    %% Cấu thành (Composition - Cha chết con chết)
+    KhoaHoc "1" *-- "1..*" KyNang : Bao gom
+    KyNang "1" *-- "1..*" BaiHoc : Bao gom
 
-    HocVien "1" -- "0..*" KetQuaKiemTra
-    BaiKiemTraDauVao "1" -- "0..*" KetQuaKiemTra
+    %% Tập hợp (Aggregation - Tham chiếu danh sách có sẵn)
+    BaiHoc "1" o-- "0..*" CauHoi : Chua cau hoi
+    BaiKiemTraDauVao "1" o-- "10..*" CauHoi : Chua cau hoi
 
-    HocVien "1" -- "0..*" TienDoHocTap
-    KhoaHoc "1" -- "0..*" TienDoHocTap
-
-    HocVien "1" -- "0..*" DonHang
-    DonHang "1" -- "0..1" GiaoDichThanhToan
-
-    HocVien "1" -- "0..*" BinhLuan
-    KhoaHoc "1" -- "0..*" BinhLuan
-
-    HocVien "1" -- "0..*" ThongBao
+    %% Liên kết (Association - Tương tác ngang hàng)
+    HocVien "1" -- "0..*" KetQuaKiemTra : Thuc hien
+    BaiKiemTraDauVao "1" -- "0..*" KetQuaKiemTra : Cho ra
+    HocVien "1" -- "0..*" TienDoHocTap : So huu
+    KhoaHoc "1" -- "0..*" TienDoHocTap : Ghi nhan
+    HocVien "1" -- "0..*" DonHang : Dat hang
+    DonHang "1" -- "0..1" GiaoDichThanhToan : Thanh toan qua
+    HocVien "1" -- "0..*" BinhLuan : Viet
+    KhoaHoc "1" -- "0..*" BinhLuan : Chua
+    HocVien "1" -- "0..*" ThongBao : Nhan
 ```
