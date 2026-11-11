@@ -1,0 +1,1 @@
+# classDiagramWedEnglish.mb
